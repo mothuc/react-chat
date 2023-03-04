@@ -326,16 +326,16 @@ $darkColor: #2f2d52;
       .input-container {
         height: 50px;
         background-color: white;
-        padding: 10px;
+        padding: 10px 0px 10px 10px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
 
-        .input-handle {
-          flex: 1;
-          // width: 100%;
+        .input-area {
+          flex: 8;
+          align-items: center;
+          display: flex;
+          margin-right: 8px;
+
           .imgPreview {
-            align-items: center;
             position: relative;
 
             img {
@@ -354,11 +354,11 @@ $darkColor: #2f2d52;
           }
 
           input {
-            // width: 100%;
             border: none;
             outline: none;
             color: #2f2d52;
             font-size: 18px;
+            width: 100%;
 
             &::placeholder {
               color: lightgray;
@@ -367,11 +367,10 @@ $darkColor: #2f2d52;
         }
 
         .send {
+          flex: 2;
           display: flex;
           align-items: center;
           gap: 10px;
-          padding: 8px;
-          width: 100px;
 
           img {
             height: 24px;
@@ -382,6 +381,7 @@ $darkColor: #2f2d52;
             border: none;
             padding: 10px 15px;
             color: white;
+            border-radius: 8px;
             background-color: #8da4f1;
             cursor: pointer;
           }

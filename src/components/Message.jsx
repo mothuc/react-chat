@@ -13,43 +13,15 @@ function Message({ message }) {
   }, [message]);
 
   return (
-    <>
-      {message.text !== "" ? (
-        <div ref={ref} className={`message ${message.senderId === currentUser.uid && "owner"}`}>
-          <div className="messageInfo">
-            {message.senderId !== currentUser.uid && (
-              <Avatar
-                name={
-                  message.senderId === currentUser.uid
-                    ? currentUser.displayName
-                    : data.user.displayName
-                }
-              />
-            )}
-          </div>
-          <div className="messageContent">
-            <p>{message.text}</p>
-          </div>
-        </div>
-      ) : (
-        <div ref={ref} className={`message ${message.senderId === currentUser.uid && "owner"}`}>
-          <div className="messageInfo">
-            {message.senderId !== currentUser.uid && (
-              <Avatar
-                name={
-                  message.senderId === currentUser.uid
-                    ? currentUser.displayName
-                    : data.user.displayName
-                }
-              />
-            )}
-          </div>
-          <div className="messageContent">
-            <img src={message.img} alt="img" />
-          </div>
-        </div>
-      )}
-    </>
+    <div ref={ref} className={`message ${message.senderId === currentUser.uid && "owner"}`}>
+      <div className="messageInfo">
+        {message.senderId !== currentUser.uid && <Avatar name={data.user.displayName} />}
+      </div>
+      <div className="messageContent">
+        {message.text && <p>{message.text}</p>}
+        {message.img && <img src={message.img} alt="" />}
+      </div>
+    </div>
   );
 }
 

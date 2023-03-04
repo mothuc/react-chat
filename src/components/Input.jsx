@@ -36,7 +36,6 @@ function Input() {
 
   const handleSend = async () => {
     if (img) {
-      console.log("img start");
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
 
@@ -68,7 +67,11 @@ function Input() {
         }),
       });
     }
-
+    if (text === "") {
+      setImgPreview(null);
+      setImg(null);
+      return;
+    }
     await updateDoc(doc(db, "userChats", currentUser.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
@@ -95,25 +98,24 @@ function Input() {
 
   return (
     <div className="input-container">
-      <div className="input-handle">
-        {imgPreview ? (
+      <div className="input-area">
+        <input
+          type="text"
+          placeholder="Enter your message"
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+          onKeyDown={handleKey}
+        />
+        {imgPreview && (
           <div className="imgPreview">
             <div className="imgPre">
               <img src={imgPreview} alt="Preview" />
               <button onClick={cancelInputImg}>x</button>
             </div>
           </div>
-        ) : (
-          <input
-            type="text"
-            placeholder="Enter your message"
-            onChange={(e) => setText(e.target.value)}
-            value={text}
-            onKeyDown={handleKey}
-          />
         )}
-        {}
       </div>
+
       <div className="send">
         <input
           type="file"
@@ -122,6 +124,7 @@ function Input() {
           value={tempInputImg}
           onChange={handleInputImg}
         />
+
         <label htmlFor="file">
           <img src={Img} alt="" />
         </label>

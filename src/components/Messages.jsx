@@ -26,9 +26,11 @@ function Messages() {
 
   return (
     <div ref={messagesRef} className="messages">
-      {messages.map((m) => (
-        <Message message={m} key={m.id} />
-      ))}
+      {messages.map((m) => {
+        if (m.text !== "" || m.img) {
+          return <Message message={m} key={m.id} />;
+        }
+      })}
     </div>
   );
 }
